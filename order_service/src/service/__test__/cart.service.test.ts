@@ -30,6 +30,6 @@ describe("", () => {
         expect(res).toEqual({
             message: "fake response from cart repository",
             input: mockCart,
-        })
+        });
     })
 })

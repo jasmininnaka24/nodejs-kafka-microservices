@@ -1,14 +1,26 @@
 services:
-  postgres:
+  product_db_service:
     image: "postgres:14.0"
     ports:
-      - "5432:5432"
+      - "5434:5432"
     environment:
       POSTGRES_USER: product_db
       POSTGRES_PASSWORD: product_db_password
       POSTGRES_DB: product_service
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - product-postgres-data-fresh:/var/lib/postgresql/data
+
+  order_db_service:
+    image: "postgres:14.0"
+    ports:
+      - "5433:5432"   
+    environment:
+      POSTGRES_USER: order_db
+      POSTGRES_PASSWORD: order_db_password
+      POSTGRES_DB: order_service
+    volumes:
+      - order-postgres-data-fresh:/var/lib/postgresql/data
 
 volumes:
-  postgres-data:
+  product-postgres-data-fresh:
+  order-postgres-data-fresh:
