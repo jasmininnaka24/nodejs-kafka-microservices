@@ -21,6 +21,30 @@ services:
     volumes:
       - order-postgres-data-fresh:/var/lib/postgresql/data
 
+  order_service:
+    image: "innkjsmn/order_service"
+    # build: .
+    ports:
+      - "9000:9000"
+    environment:
+      APP_PORT: 9000
+      DATABASE_URL: postgresql://order_db:order_db_password@order_db_service:5432/order_service
+    depends_on:
+      - order_db_service
+    command: npm run start
+
+    
+  product_service:
+    image: "innkjsmn/product_service"
+    ports:
+      - "8000:8000"
+    environment:
+      APP_PORT: 8000
+      DATABASE_URL: postgresql://product_db:product_db_password@product_db_service:5432/product_service
+    depends_on:
+      - product_db_service
+    command: npm run start
+
 volumes:
   product-postgres-data-fresh:
   order-postgres-data-fresh:

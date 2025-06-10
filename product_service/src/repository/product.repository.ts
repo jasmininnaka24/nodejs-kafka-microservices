@@ -1,4 +1,4 @@
-import { PrismaClient } from "../../generated/prisma";
+import { PrismaClient } from "@prisma/client";
 import { CreateProductRequest, UpdateProductRequest } from "../dto/product.dto";
 import { IProductRepository } from "../interface/product.interface";
 import { Product } from "../model/product.model";
